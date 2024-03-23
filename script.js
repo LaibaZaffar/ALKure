@@ -1,31 +1,5 @@
-// let login_register_btn = document.querySelector(".Login-form .signup-btn");
-// let login_btn = document.querySelector(".Login-btn");
-// let forgot_btn = document.querySelector(".forgot-btn");
+
 let login_btn_forgot = document.querySelector(".forgotPass-form .Login-btn");
-
-// let form = document.querySelector(".Form-box");
-// let login_form_check = document.querySelector(".Login-form");
-// let signup_form_check=document.querySelector(".signup-form");
-// let forgotPass_form_check=document.querySelector(".forgotPass-form");
-
-// // move towards Sign-UP page from Sign-in page
-// login_register_btn.addEventListener("click", () => {
-//   form.classList.add("change-form1");
-//   form.classList.add("expanded");
-// });
-// // Move towards Sign-In page from Signup page
-// login_btn.addEventListener("click", () => {
-//   form.classList.remove("change-form1");
-//   form.classList.remove("expanded");
-//   form.classList.add("change-form2");
-  
-// });
-
-// forgot_btn.addEventListener("click", () => {
-//    form.classList.remove("expanded");
-//    form.classList.add("change-form3");
-// });
-
 login_btn_forgot.addEventListener("click", () => {
   form.classList.remove("expanded");
   form.classList.remove("change-form3");
