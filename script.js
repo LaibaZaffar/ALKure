@@ -139,11 +139,25 @@ login_btn_forgot.addEventListener("click", () => {
 let register_btn = document.querySelector(".signup-btn");
 let login_btn = document.querySelector(".Login-btn");
 let forgot_btn = document.querySelector(".forgot-btn");
+const submitBtnLogin = document.querySelector(".Login-form .submit-btn");
 
 let form = document.querySelector(".Form-box");
 let login_form_check = document.querySelector(".Login-form");
 let signup_form_check=document.querySelector(".signup-form");
 let forgotPass_form_check=document.querySelector(".forgotPass-form");
+
+submitBtnLogin.addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent default form submission
+
+  const username = document.getElementById("emaillogin").value;
+  const password = document.getElementById("loginPass").value;
+
+  if (username.trim() !== '' && password.trim() !== '') {
+      window.location.href = "home.html";
+  } else {
+      alert("Please fill in both username and password fields.");
+  }
+});
 
 register_btn.addEventListener("click", () => {
   form.classList.remove("change-form2", "change-form3"); // Remove other classes if present
