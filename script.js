@@ -1,3 +1,6 @@
+// let login_register_btn = document.querySelector(".Login-form .signup-btn");
+// let login_btn = document.querySelector(".Login-btn");
+// let forgot_btn = document.querySelector(".forgot-btn");
 
 let login_btn_forgot = document.querySelector(".forgotPass-form .Login-btn");
 const verifyButton = document.getElementById("opt_v");
@@ -52,9 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 let otp_val;
 function sendOTP() {
-  e.preventDefault(); // Prevent form submission
+  event.preventDefault(); // Prevent form submission
 
   const email = document.getElementById("emailsignup");
   const otpInput = document.querySelector(".otp_verify .otp-input");
@@ -75,26 +79,6 @@ function sendOTP() {
     }
   });
 }
-
-// OTP verification
-// document.getElementById("opt_v").addEventListener("click", () => {
-//   const otpInput = document.querySelector(".otp_verify .otp-input");
-//   const otp_val_inp = parseInt(otpInput.value); // Convert input value to integer
-
-//   // Your OTP verification logic
-//   // Check if OTP entered matches the generated OTP
-//   console.log( otp_val);
-//   console.log(otp_val_inp);
-//   if (otp_val === otp_val_inp) {
-//     alert("Email address verified.");
-//   } else {
-//     alert("Invalid OTP. Please try again.");
-//     otpInput.focus();
-//   }
-// });
-
-
-
 
 document.getElementById("opt_v").addEventListener("click", () => {
   const otpInputs = document.querySelectorAll(".otp_verify .otp-input");
@@ -122,36 +106,8 @@ document.getElementById("opt_v").addEventListener("click", () => {
   }
 });
 
-
-
-
-
-
  //focus the first input index is 0 on window load
 window.addEventListener("load" , ()=>input_otp[0].focus());
-
-// let form = document.querySelector(".Form-box");
-// let login_form_check = document.querySelector(".Login-form");
-// let signup_form_check=document.querySelector(".signup-form");
-// let forgotPass_form_check=document.querySelector(".forgotPass-form");
-
-// // move towards Sign-UP page from Sign-in page
-// login_register_btn.addEventListener("click", () => {
-//   form.classList.add("change-form1");
-//   form.classList.add("expanded");
-// });
-// // Move towards Sign-In page from Signup page
-// login_btn.addEventListener("click", () => {
-//   form.classList.remove("change-form1");
-//   form.classList.remove("expanded");
-//   form.classList.add("change-form2");
-  
-// });
-
-// forgot_btn.addEventListener("click", () => {
-//    form.classList.remove("expanded");
-//    form.classList.add("change-form3");
-// });
 
 document.addEventListener("DOMContentLoaded", function() {
   let signup_form = document.querySelector(".signup-form");
@@ -172,9 +128,6 @@ document.addEventListener("DOMContentLoaded", function() {
     form.classList.add("change-form4");
   });
 });
-
-
-
 
 
 
