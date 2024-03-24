@@ -1,6 +1,5 @@
-// let login_register_btn = document.querySelector(".Login-form .signup-btn");
-// let login_btn = document.querySelector(".Login-btn");
-// let forgot_btn = document.querySelector(".forgot-btn");
+
+
 let login_btn_forgot = document.querySelector(".forgotPass-form .Login-btn");
 const verifyButton = document.getElementById("opt_v");
 document.addEventListener("DOMContentLoaded", () => {
@@ -54,44 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-// function sendOTP(){
-//   event.preventDefault();
-//   const email=document.getElementById("emailsignup");
-//   console.log(email)
-//   const optverify=document.getElementById("opt_v");
-//   let otp_val = Math.floor(1000 + Math.random() * 9000);//This formula generates a random number between 1000 and 9999 
-//   //(inclusive). Since Math.random() generates a random number between 0 (inclusive)
-//   // and 1 (exclusive), multiplying it by 9000 will give a number between 0 and 9000. Adding
-//   // 1000 ensures that the result falls within the desired range of 1000 to 9999.
-//   let emailbody = `<h2>Your OTP is </h2>${otp_val}`;
-//   Email.send({
-//     SecureToken : "407248bd-fcaf-4ac5-9bb6-58dce7669734",
-//     To : email.value,
-//     From : "kamlasafdar23@gmail.com",
-//     Subject : "Email OTP verification",
-//     Body : emailbody,
-// }).then(
-//     message=>{
-//       if(message==="OK"){
-//         alert("OTP sent to your email " +email.value);
-//         optverify.style.display = "flex";
-//         const otp_inp = document.getElementsByClassName("otp-input");
-//         const otp_btn = document.querySelector(".otp_verify button");
-//         otp_btn.addEventListener("click" , ()=>{
-//           if(otp_inp.value==otp_val){
-//             alert("Email address verified....");
-//           }
-//           else{
-//             alert("invalid OTP");
-//           }
-//         })
-//       }
-//     }
-// );
-// }
-
-
 let otp_val;
 function sendOTP() {
   event.preventDefault(); // Prevent form submission
@@ -115,26 +76,6 @@ function sendOTP() {
     }
   });
 }
-
-// OTP verification
-// document.getElementById("opt_v").addEventListener("click", () => {
-//   const otpInput = document.querySelector(".otp_verify .otp-input");
-//   const otp_val_inp = parseInt(otpInput.value); // Convert input value to integer
-
-//   // Your OTP verification logic
-//   // Check if OTP entered matches the generated OTP
-//   console.log( otp_val);
-//   console.log(otp_val_inp);
-//   if (otp_val === otp_val_inp) {
-//     alert("Email address verified.");
-//   } else {
-//     alert("Invalid OTP. Please try again.");
-//     otpInput.focus();
-//   }
-// });
-
-
-
 
 document.getElementById("opt_v").addEventListener("click", () => {
   const otpInputs = document.querySelectorAll(".otp_verify .otp-input");
@@ -170,29 +111,6 @@ document.getElementById("opt_v").addEventListener("click", () => {
  //focus the first input index is 0 on window load
 window.addEventListener("load" , ()=>input_otp[0].focus());
 
-// let form = document.querySelector(".Form-box");
-// let login_form_check = document.querySelector(".Login-form");
-// let signup_form_check=document.querySelector(".signup-form");
-// let forgotPass_form_check=document.querySelector(".forgotPass-form");
-
-// // move towards Sign-UP page from Sign-in page
-// login_register_btn.addEventListener("click", () => {
-//   form.classList.add("change-form1");
-//   form.classList.add("expanded");
-// });
-// // Move towards Sign-In page from Signup page
-// login_btn.addEventListener("click", () => {
-//   form.classList.remove("change-form1");
-//   form.classList.remove("expanded");
-//   form.classList.add("change-form2");
-  
-// });
-
-// forgot_btn.addEventListener("click", () => {
-//    form.classList.remove("expanded");
-//    form.classList.add("change-form3");
-// });
-
 document.addEventListener("DOMContentLoaded", function() {
   let signup_form = document.querySelector(".signup-form");
   let otp_verify_form = document.querySelector(".otp_verify");
@@ -213,10 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
-
-
-
+let login_btn_forgot = document.querySelector(".forgotPass-form .Login-btn");
 
 login_btn_forgot.addEventListener("click", () => {
   form.classList.remove("expanded");
