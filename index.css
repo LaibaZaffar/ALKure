@@ -5,7 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    background-image: url(./bg.jpg);
+    background-image: url(./bg1.jpg);
     background-size: cover;
     background-position: 0px -50px;
     display: flex;
@@ -23,6 +23,7 @@ body{
     border: 2px solid white;
     border-radius: 16px;
     overflow: hidden; 
+    margin-right: 20%;
 }
 .Form-box.expanded {
     height: 600px; /* Increased height when signup form is active */
@@ -131,4 +132,57 @@ body{
 }
 .change-form3 .forgotPass-form{
     transform: translateX(0%);
+}
+.otp_verify {
+    transform: translateX(100%);
+}
+.change-form4 .otp_verify {
+    transform: translateX(0%);
+}
+.change-form4 .Login-form {
+    transform: translateX(100%);
+}
+/* .Login-form{
+    visibility: hidden;
+}
+.otp_verify{
+    visibility: visible;
+} */
+.input-feild input{
+    margin-top: 10px;
+    border-radius: 6px;
+    outline: none;
+    height:45px;
+    width:42px;
+    font-size: 1.125rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+.otp_verify button{
+    margin-top: 25px;
+    width:30%;
+    height: 5%;
+    background-color: #6e93f7;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    padding: 9px , 0;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+#opt_v.active {
+    background: #0e4bf1;
+}
+
+.otp_verify .otp-input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Remove the default spinner arrows for number input fields */
+.otp_verify .otp-input::-webkit-inner-spin-button,
+.otp_verify .otp-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
