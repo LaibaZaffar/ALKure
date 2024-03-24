@@ -1,4 +1,6 @@
-
+// let login_register_btn = document.querySelector(".Login-form .signup-btn");
+// let login_btn = document.querySelector(".Login-btn");
+// let forgot_btn = document.querySelector(".forgot-btn");
 
 let login_btn_forgot = document.querySelector(".forgotPass-form .Login-btn");
 const verifyButton = document.getElementById("opt_v");
@@ -53,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 let otp_val;
 function sendOTP() {
   event.preventDefault(); // Prevent form submission
@@ -103,11 +106,6 @@ document.getElementById("opt_v").addEventListener("click", () => {
   }
 });
 
-
-
-
-
-
  //focus the first input index is 0 on window load
 window.addEventListener("load" , ()=>input_otp[0].focus());
 
@@ -131,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-let login_btn_forgot = document.querySelector(".forgotPass-form .Login-btn");
+
 
 login_btn_forgot.addEventListener("click", () => {
   form.classList.remove("expanded");
