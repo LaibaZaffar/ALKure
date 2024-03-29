@@ -146,6 +146,8 @@ let login_form_check = document.querySelector(".Login-form");
 let signup_form_check=document.querySelector(".signup-form");
 let forgotPass_form_check=document.querySelector(".forgotPass-form");
 
+
+
 submitBtnLogin.addEventListener("click", function(event) {
   event.preventDefault(); // Prevent default form submission
 
@@ -176,6 +178,25 @@ forgot_btn.addEventListener("click", () => {
   form.classList.add("change-form3");
 });
 
+const newPassInput = document.getElementById("newPass");
+const cnfrmPassInput = document.getElementById("cnfrmPass");
+
+// forgot_btn.addEventListener("click", () => {
+//   const newPassword = newPassInput.value;
+//   const confirmPassword = cnfrmPassInput.value;
+
+//   if (newPassword === confirmPassword) {
+//       // If passwords match, show success alert
+//       alert("Password successfully reset!");
+      
+//       // Transition forms
+//       form.classList.remove("change-form1", "change-form2");
+//       form.classList.add("change-form3");
+//   } else {
+//       // If passwords don't match, display an error message
+//       alert("Passwords do not match. Please try again.");
+//   }
+// });
 
 function validatePassword(password) {
     var specialCharacterRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
@@ -198,21 +219,40 @@ login_form_check.addEventListener("submit", function(event) {
 });
 
 forgotPass_form_check.addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent default form submission
+
   var passwordInput = forgotPass_form_check.querySelector('input[type="password"]');
   var password = passwordInput.value;
+  const newPassword = newPassInput.value;
+  const confirmPassword = cnfrmPassInput.value;
   if (!validatePassword(password)) {
       event.preventDefault();
       alert("Password must be at least 5 characters long and contain at least one special character.");
   }
+  else if(newPassword === confirmPassword) {
+    // If passwords match, show success alert
+    alert("Password successfully reset!");
+    
+    // Transition forms
+    form.classList.remove("change-form1", "change-form2");
+    form.classList.add("change-form3");
+} 
+else {
+    // If passwords don't match, display an error message
+    alert("Passwords do not match. Please try again.");
+}
 });
 
 signup_form_check.addEventListener("submit", function(event) {
   var passwordInput = signup_form_check.querySelector('input[type="password"]');
   var password = passwordInput.value;
+  
   if (!validatePassword(password)) {
       event.preventDefault();
       alert("Password must be at least 5 characters long and contain at least one special character.");
   }
+
+
 });
 
 login_form_check.addEventListener("submit", function(event) {
