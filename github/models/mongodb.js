@@ -1,5 +1,4 @@
 
-
 const { MongoClient } = require('mongodb');
 
 // Connection URI
@@ -19,15 +18,41 @@ async function connectToMongoDB() {
         throw error; // Rethrow the error to handle it in the calling function
     }
 }
+let fname , uname , em , pass,phno;
 
+// async function registerUser(req, res) {
+//     try {
+//         const { fname_Signup, username_Signup, emailsignup, signupPass, pn } = req.body;
+//         const { database } = await connectToMongoDB();          // Connect to MongoDB
+//         const collection = database.collection('users');          // Access the Users collection
+//         await collection.insertOne({ fname_Signup, username_Signup, emailsignup, signupPass, pn });
+//         console.log('Account data inserted successfully');
+//         res.status(200).send('Success: Request completed successfully');
+//     }
+//     catch (error) {
+//         console.error('Error inserting user data:', error);
+//         res.status(500).send('Error inserting user data');
+//     }
+// }
 async function registerUser(req, res) {
     try {
+        console.log('Received signup request:', req.body);
         const { fname_Signup, username_Signup, emailsignup, signupPass, pn } = req.body;
         const { database } = await connectToMongoDB();          // Connect to MongoDB
         const collection = database.collection('users');          // Access the Users collection
-        await collection.insertOne({ fname_Signup, username_Signup, emailsignup, signupPass, pn });
-        console.log('Account data inserted successfully');
-        res.status(200).send('Success: Request completed successfully');
+        const user = await collection.findOne({ emailsignup: req.body.emailsignup });
+        if (user) {
+            // User already exists, send response with error message
+            return res.status(400).send('User already exists');
+        } else {
+            // User does not exist, insert data into the database
+            console.log('Account data inserted successfully');
+            fname=fname_Signup;
+            uname=username_Signup;
+            em=emailsignup;
+            pass=signupPass;
+            phno=pn;
+        }
     }
     catch (error) {
         console.error('Error inserting user data:', error);
@@ -35,28 +60,35 @@ async function registerUser(req, res) {
     }
 }
 
+
 async function verifyOtp(req, res) {
     try {
+        const { database } = await connectToMongoDB(); // Connect to MongoDB
+        const collection = database.collection('users'); // Access the Users collection
+        // Inserting the extracted values into the databas
+         await collection.insertOne({ fname, uname, em, pass, phno });
+
         res.redirect('/home');
     }
     catch (error) {
         console.error('Error in redirecting to Home Page from Verification Form', error);
         res.status(500).send('Error handling /otp Post request');
-    }
+ }
 }
 
 async function confirmLogin(req, res) {
     try {
         const { database } = await connectToMongoDB();          // Connect to MongoDB
         const collection = database.collection('users');          // Access the Users collection
-        const user = await collection.findOne({ emailsignup: req.body.emaillogin });
+        const user = await collection.findOne({ em: req.body.emaillogin });
+        console.log(user);
 
         if (!user) {
             console.log('User not found');
             return res.status(404).send('User not Found');
         }
 
-        if (user.signupPass === req.body.loginPass) {
+        if (user.pass === req.body.loginPass) {
             console.log("Login Successful");
             res.redirect('/home');
         } else {
@@ -74,14 +106,14 @@ async function changePass(req, res) {
         const { database } = await connectToMongoDB();
         const collection = database.collection('users');
 
-        const user = await collection.findOne({ emailsignup: req.body.emailForgot });
+        const user = await collection.findOne({ em: req.body.emailForgot });
 
         if (!user) {
             console.log('User not found');
             return res.status(404).send('User not Found');
         }
         else {
-            await collection.updateOne({ _id: user._id }, { $set: { signupPass: req.body.newPass } });
+            await collection.updateOne({ _id: user._id }, { $set: { pass: req.body.newPass } });
             console.log("Password Reset Successfully");
             res.status(200).send('Success: Request completed successfully');
         }
