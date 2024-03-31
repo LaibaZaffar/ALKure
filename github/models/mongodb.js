@@ -12,9 +12,8 @@ async function connectToMongoDB() {
     try {
         await client.connect();          // Connect to the MongoDB cluster
         console.log('Connected to MongoDB Atlas');
-
         return { client, database: client.db('Alkure') };       // Return the connected client and database
-    } 
+    }
     catch (error) {
         console.error('Error connecting to MongoDB Atlas:', error);
         throw error; // Rethrow the error to handle it in the calling function
@@ -23,19 +22,12 @@ async function connectToMongoDB() {
 
 async function registerUser(req, res) {
     try {
-        console.log('Received signup request:', req.body);
         const { fname_Signup, username_Signup, emailsignup, signupPass, pn } = req.body;
-        console.log('Extracted firstName:', fname_Signup);
-        console.log('Extracted username:', username_Signup);
-        console.log('Extracted email:', emailsignup);
-        console.log('Extracted password:', signupPass);
-        console.log('Extracted phone Number:', pn);
-
         const { database } = await connectToMongoDB();          // Connect to MongoDB
         const collection = database.collection('users');          // Access the Users collection
         await collection.insertOne({ fname_Signup, username_Signup, emailsignup, signupPass, pn });
         console.log('Account data inserted successfully');
-       
+        res.status(200).send('Success: Request completed successfully');
     }
     catch (error) {
         console.error('Error inserting user data:', error);
@@ -57,12 +49,8 @@ async function confirmLogin(req, res) {
     try {
         const { database } = await connectToMongoDB();          // Connect to MongoDB
         const collection = database.collection('users');          // Access the Users collection
-
-        console.log('Extracted body:', req.body);
-
         const user = await collection.findOne({ emailsignup: req.body.emaillogin });
 
-        console.log('User:', user);
         if (!user) {
             console.log('User not found');
             return res.status(404).send('User not Found');
@@ -81,9 +69,28 @@ async function confirmLogin(req, res) {
     }
 }
 
-async function changePass(req,res){
+async function changePass(req, res) {
+    try {
+        const { database } = await connectToMongoDB();
+        const collection = database.collection('users');
 
+        const user = await collection.findOne({ emailsignup: req.body.emailForgot });
+
+        if (!user) {
+            console.log('User not found');
+            return res.status(404).send('User not Found');
+        }
+        else {
+            await collection.updateOne({ _id: user._id }, { $set: { signupPass: req.body.newPass } });
+            console.log("Password Reset Successfully");
+            res.status(200).send('Success: Request completed successfully');
+        }
+    }
+    catch (error) {
+        console.error('Error in Reset Password Request', error);
+        return res.status(500).send('Error handling /forgotPass Post request');
+    }
 }
 
 
-module.exports = { connectToMongoDB,verifyOtp,confirmLogin,registerUser };
+module.exports = { connectToMongoDB, verifyOtp, confirmLogin, registerUser, changePass };

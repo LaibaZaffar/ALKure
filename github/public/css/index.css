@@ -59,15 +59,16 @@ body{
     width: 90%;
     position: absolute;
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     border: none;
     background: none;
     outline: none;
 }
+
 .input-box label{
      transition: .4s; /*it provide trasition when we click on input line for input so it provide trasition to our labels like emails,password*/
 }
-.input-box input:focus ~ label,/*these tewo are actually here bcz */
+.input-box input:focus ~ label,
 .input-box input:valid ~ label
 {
     transform: translateY(-25px); /*how much the label should go above in trasition this is happening here like we are changing the position of labels like email -25px by traslating it on y-axis that's why the line move in -y dirction*/

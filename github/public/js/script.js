@@ -129,10 +129,10 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
     // Prepare login data
-    const loginData = {
-      emaillogin: username,
-      password: password
-    };
+    // const loginData = {
+    //   emaillogin: username,
+    //   password: password
+    // };
 
     // Send login request to the server
     // fetch('/login', {
@@ -182,6 +182,9 @@ forgotPass_form_check.addEventListener("submit", function (event) {
   const newPassword = newPassInput.value;
   const cnfrmPassInput = document.getElementById("cnfrmPass");
   const confirmPassword = cnfrmPassInput.value;
+  const emailForgotInput=document.getElementById("emailForgot");
+  const emailForgot = emailForgotInput.value;
+
   var passwordInput = forgotPass_form_check.querySelector('input[type="password"]');
   var password = passwordInput.value;
 
@@ -189,11 +192,15 @@ forgotPass_form_check.addEventListener("submit", function (event) {
     event.preventDefault();
     alert("Password must be at least 5 characters long and contain at least one special character.");
   }
+  if (!validate_email(emailForgot)) {
+    alert("Email must end with @gmail.com");
+    return;
+  }
   else if (newPassword === confirmPassword) {
-    alert("Password successfully reset!");
+    forgotPass_form_check.submit();
 
-    form.classList.remove("change-form1", "change-form2");
-    form.classList.add("change-form3");
+    // form.classList.remove("change-form1", "change-form2");
+    // form.classList.add("change-form3");
   }
   else {
     alert("Passwords do not match. Please try again.");
