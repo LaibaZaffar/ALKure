@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const pageController = require('./controllers/pageController');
-const { connectToMongoDB, verifyOtp, confirmLogin, registerUser } = require('./models/mongodb.js');
+const { connectToMongoDB, verifyOtp, confirmLogin, registerUser, changePass } = require('./models/mongodb.js');
 
 // Set the view engine and create the server
 app.set('view engine', 'ejs');
@@ -32,6 +32,7 @@ app.post('/otp',async(req,res) => {
 app.post('/login',async(req,res) => {
     await confirmLogin(req,res);
 });
+
 app.post('/forgotPass',async(req,res) => {
     await changePass(req,res);
 });
