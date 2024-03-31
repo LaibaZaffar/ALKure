@@ -18,3 +18,5 @@ exports.getIndexPage = (req, res) => {
 exports.getHomePage = (req, res) => {
     res.render(path.join(__dirname, '../views/home'));
 };
+
+
