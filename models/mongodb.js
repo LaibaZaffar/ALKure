@@ -1,10 +1,9 @@
 
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
-
+const mongoose=require('mongoose')
 // Connection URI
 const uri = 'mongodb+srv://kamlasafdar23:enDOlvrKMvUnKezo@cluster0.nx1mnrv.mongodb.net/';
-
 // Create a new MongoClient
 const client = new MongoClient(uri);
 
@@ -27,6 +26,7 @@ async function registerUser(req, res) {
         console.log('Received signup request:', req.body);
         const { fname_Signup, username_Signup, emailsignup, signupPass, pn } = req.body;
         const { database } = await connectToMongoDB();          // Connect to MongoDB
+        
         const collection = database.collection('users');          // Access the Users collection
         const user = await collection.findOne({ emailsignup: req.body.emailsignup });
         if (user) {
