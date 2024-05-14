@@ -4,10 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="css/style.default.css" id="theme-stylesheet"> <!-- my bootstrap file for layout.ejs-->
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
-    <h1 style="text-align:center; margin-top:20%;">Hi! I am your Home Page :)</h1>
+    <header class="header bg-white">
+        <div class="container px-lg-3">
+          <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0 pt-4">
+              <a class="navbar-brand" href="/"><span class="fw-bold text-dark"><img src="/images/100Size.jpg">ALKure</span><span class="small text-muted">Crochet</span></a>
     
+           
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto ">
+                <li class="nav-item">
+                  <!-- Link--><a class="nav-link " href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <!-- Link--><a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <!-- Link--><a class="nav-link" href="#">Products</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav ms-auto">
+                <!-- layout.html -->
+                <% if(sessionInfo?.user !== null){ %>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Welcome, <%= sessionInfo?.user?.Name %>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                  </li>
+                  <% } else { %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login">Login</a>
+                    </li>
+                  <% } %>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
+    <h1 style="text-align:center; margin-top:20%;margin-bottom:20%;">Hi! I am your Home Page :)</h1>
+    
+  <footer class="bg-dark text-white">
+    <div class="container py-4">
+      <div class="row py-5">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h6 class="text-uppercase mb-3">Customer services</h6>
+          <ul class="list-unstyled mb-0">
+            <li><a class="footer-link" href="#!">Help &amp; Contact Us</a></li>
+            <li><a class="footer-link" href="#!">Returns &amp; Refunds</a></li>
+            <li><a class="footer-link" href="#!">Online Stores</a></li>
+            <li><a class="footer-link" href="#!">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h6 class="text-uppercase mb-3">Company</h6>
+          <ul class="list-unstyled mb-0">
+            <li><a class="footer-link" href="#!">What We Do</a></li>
+            <li><a class="footer-link" href="#!">Available Services</a></li>
+            <li><a class="footer-link" href="#!">Latest Posts</a></li>
+            <li><a class="footer-link" href="#!">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-uppercase mb-3">Social media</h6>
+          <ul class="list-unstyled mb-0">
+            <li><a class="footer-link" href="#!">Twitter</a></li>
+            <li><a class="footer-link" href="#!">Instagram</a></li>
+            <li><a class="footer-link" href="#!">Tumblr</a></li>
+            <li><a class="footer-link" href="#!">Pinterest</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-top pt-4" style="border-color: #1d1d1d !important">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="small text-muted mb-0">&copy; 2024 All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
     <script src="/js/script.js"></script>
 

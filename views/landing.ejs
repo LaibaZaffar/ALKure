@@ -9,9 +9,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
   <!-- theme stylesheet-->
-  <link rel="stylesheet" type="text/css" href="css/style.default.css" id="theme-stylesheet"> <!-- my bootstrap file for layout.ejs-->
+  <link rel="stylesheet" type="text/css" href="css/style.default.css" id="theme-stylesheet">   <!--my bootstrap file for layout.ejs -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  
+  
 </head>
 <body>
 <div class="page-holder" style="background-color:rgb(208, 236, 238);">
@@ -19,15 +21,12 @@
   <header class="header bg-white">
     <div class="container px-lg-3">
       <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0 pt-4">
-          <a class="navbar-brand" href="#"><span class="fw-bold text-dark"><img src="/images/100Size.jpg">ALKure</span><span class="small text-muted">Crochet</span></a>
+          <a class="navbar-brand" href="/"><span class="fw-bold text-dark"><img src="/images/100Size.jpg">ALKure</span><span class="small text-muted">Crochet</span></a>
 
-        <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto ">
             <li class="nav-item">
-              <!-- Link--><a class="nav-link " href="#">Home</a>
+              <!-- Link--><a class="nav-link " href="/">Home</a>
             </li>
             <li class="nav-item">
               <!-- Link--><a class="nav-link" href="#">Shop</a>
@@ -37,10 +36,23 @@
             </li>
           </ul>
           <ul class="navbar-nav ms-auto">
-            <!-- layout.html -->
-            <li class="nav-item">
-              <a class="nav-link" href="/index">Login</a>
-            </li>
+            <!-- landingPage.html -->
+            <% if(sessionInfo?.user !== null){ %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Welcome, <%= sessionInfo?.user?.Name %>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </li>
+              <% } 
+              else { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+              <%
+             } %>
           </ul>
         </div>
       </nav>
@@ -180,8 +192,8 @@
     </div>
   </footer>
 
-  <!-- JavaScript files-->
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!--  files-->
+  <script src="/js/bootstrap.bundle.min.js"></script>
 
   <!-- Initialize Bootstrap carousel -->
   <script>
