@@ -68,7 +68,6 @@ async function verifyOtp(req, res) {
 
         // Creating session
         req.session.user = user;
-        console.log(user);
         req.session.isLoggedIn = true;
         // ----------------
 
@@ -92,6 +91,7 @@ async function confirmLogin(req, res) {
             return res.status(404).send('User not Found');
         }
         const passwordMatch = await bcrypt.compare(req.body.loginPass, user.Password);
+        console.log(passwordMatch)
         if (passwordMatch) {
             console.log("Login Successful");
 
@@ -100,7 +100,12 @@ async function confirmLogin(req, res) {
             req.session.isLoggedIn = true;
             // ----------------
 
-            res.redirect('/home');
+            if(user.IsAdmin === false){
+                res.redirect('/home');
+            }else{
+                console.log("redirect admin")
+                res.redirect('/admin')
+            }
 
         } else {
             console.log("Invalid password");
@@ -137,5 +142,24 @@ async function changePass(req, res) {
     }
 }
 
+async function getProducts(req, res) {
+    try {
+        const { database } = await connectToMongoDB();          
+        const collection = database.collection('products'); 
+        const products = await collection.find({}).toArray();
+        // const products = await cursor.toArray(); // Convert cursor to array of documents
+        // console.log("Products:", products);
+        // console.log("Products:", products[0]);
+        // console.log("Products:", products[1]);
 
-module.exports = { verifyOtp, confirmLogin, registerUser, changePass };
+        return products;
+
+    } catch (error) {
+        console.error('Error in Get Product Request', error);
+        res.status(500).send('Error handling /products Post request');
+    }
+}
+
+
+
+module.exports = { verifyOtp, confirmLogin, registerUser, changePass, getProducts };
