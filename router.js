@@ -55,7 +55,6 @@ const isAuthenticated = (req, res, next) => {
 
 
 
-
 // Routes
 router.get('/', pageController.getDecisionPage);   //decision page
 
