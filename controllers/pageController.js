@@ -26,6 +26,11 @@ exports.getHomePage = (req, res) => {
     res.render(path.join(__dirname, '../views/home'), { sessionInfo: sessionData }); 
 };
 
+exports.getAdminPage = (req, res) => {
+    const sessionData = req.session;
+    res.render(path.join(__dirname, '../views/admin'), { sessionInfo: sessionData }); 
+};
+
 //Render Products page
 exports.getProductsPage = async (req,res)=>{
     const sessionData = req.session;

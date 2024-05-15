@@ -102,7 +102,7 @@ async function confirmLogin(req, res) {
             if(user.IsAdmin === false){
                 res.redirect('/home');
             }else{
-                // Add admin routes here when ready
+                res.redirect('/admin')
             }
 
         } else {
