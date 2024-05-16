@@ -31,7 +31,7 @@ const { verifyOtp, confirmLogin, registerUser, changePass } = require('./models/
 const isAuthenticated = (req, res, next) => {
     const currentUrl = req.url;
     const protectedPages = ['/home', '/products'];
-    const adminProtectedPages = ['/admin'];
+    const adminProtectedPages = ['/admin' , '/Aproduct'];
 
     // Check if the user is logged in
     if (!req.session.isLoggedIn) {
@@ -47,7 +47,7 @@ const isAuthenticated = (req, res, next) => {
         // Grant access for admins
         return next();
     } else {
-        // console.log("in admin false if")
+        console.log("in admin false if")
         // Redirect to the login page for unauthorized access
         return next();
     }
@@ -61,6 +61,8 @@ router.get('/', pageController.getDecisionPage);   //decision page
 router.get('/login/:role', pageController.getLoginPage);  //login form 
 
 router.get('/admin' ,isAuthenticated ,  pageController.getAdminPage);  //admin dashboard
+
+router.get('/Aproduct' ,isAuthenticated ,  pageController.getAdminProduct);  //admin dashboard
 
 router.get('/home', isAuthenticated, pageController.getHomePage);   // first execute the isAuthenticated function 
 

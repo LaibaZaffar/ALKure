@@ -115,6 +115,29 @@ async function confirmLogin(req, res) {
     }
 }
 
+
+async function addproduct(name, description, price, category, quantity, image) {
+    try {
+        const { database } = await connectToMongoDB();
+        const collection = database.collection('products');
+
+        // Insert product into the collection
+        await collection.insertOne({
+            name: name,
+            description: description,
+            price: price,
+            category: category,
+            quantity: quantity,
+            image: image
+        });
+    } catch (error) {
+        console.error('Error adding product:', error);
+        throw error; // Rethrow the error to be caught by the caller
+    }
+}
+
+
+
 async function changePass(req, res) {
     try {
         const { database } = await connectToMongoDB();
@@ -160,4 +183,4 @@ async function getProducts(req, res) {
 
 
 
-module.exports = { verifyOtp, confirmLogin, registerUser, changePass, getProducts };
+module.exports = { verifyOtp, confirmLogin, registerUser, changePass, getProducts , addproduct };

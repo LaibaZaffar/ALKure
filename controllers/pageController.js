@@ -31,6 +31,13 @@ exports.getAdminPage = (req, res) => {
     res.render(path.join(__dirname, '../views/admin'), { sessionInfo: sessionData }); 
 };
 
+
+exports.getAdminProduct = (req, res) => {
+    console.log("in a admin product page controller")
+    const sessionData = req.session;
+    res.render(path.join(__dirname, '../views/Aproduct'), { sessionInfo: sessionData }); 
+};
+
 //Render Products page
 exports.getProductsPage = async (req,res)=>{
     const sessionData = req.session;
